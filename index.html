@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sumanta Sutradhar | PHP & MySQL Developer Portfolio</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- External CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Background Decoration -->
+    <div class="bg-decorations">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="grid-overlay" id="interactive-grid"></div>
+    </div>
+
+    <!-- Mouse Glow Effect Spotlight -->
+    <div class="mouse-glow" id="mouse-glow"></div>
+
+    <!-- Navigation Bar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="#" class="nav-logo">
+                <img src="/uploads/header_logo.png" alt="SG" class="nav-logo-img" id="nav-logo-img">
+                <span class="logo-text">S<span class="text-glow">umanta</span></span>
+            </a>
+            <div class="nav-right-side">
+                <nav class="nav-menu" id="nav-menu">
+                    <a href="#home" class="nav-link active">Home</a>
+                    <a href="#about" class="nav-link">About & Skills</a>
+                    <a href="#projects" class="nav-link">Projects</a>
+                    <a href="#timeline" class="nav-link">Experience</a>
+                    <a href="#contact" class="nav-link btn-contact-nav">Contact Me</a>
+                </nav>
+                <!-- Dark / Light Theme Toggle Button -->
+                <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle Theme">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <div class="nav-toggle" id="nav-toggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section with Project Background Slider -->
+        <section id="home" class="section hero-section">
+            <div class="hero-bg-slider" id="hero-bg-slider">
+                <!-- Dynamically populated cover slides -->
+                <div class="hero-bg-slide active" style="background-image: url('/uploads/project1.png');"></div>
+                <div class="hero-bg-overlay"></div>
+            </div>
+
+            <div class="container hero-container">
+                <div class="hero-content">
+                    <div class="hero-badges">
+                        <span class="hero-badge"><i class="fas fa-rocket"></i> <span id="badge-opportunity">Open for Opportunities</span></span>
+                        <span class="hero-badge rating-badge"><i class="fas fa-star text-warning"></i> <span id="badge-rating">4.9 Client Rating</span></span>
+                    </div>
+                    <h1 class="hero-title">
+                        Hi, I'm <span class="text-glow animate-glow" id="hero-name">Sumanta</span>
+                    </h1>
+                    <h2 class="hero-subtitle">
+                        I build <span id="typed-text"></span><span class="typed-cursor">|</span>
+                    </h2>
+                    <p class="hero-description" id="hero-desc">
+                        Specialized developer focusing on database systems, backend architecture, and dynamic web applications. Expert in creating secure web panels and managing server-side operations with PHP & MySQL.
+                    </p>
+                    <div class="hero-actions">
+                        <a href="#projects" class="btn btn-primary">
+                            <span class="btn-text">View My Work</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                        <a href="#contact" class="btn btn-secondary">
+                            <span class="btn-text">Let's Talk</span>
+                        </a>
+                    </div>
+                    <div class="social-links">
+                        <a href="https://github.com/sumantacollage2004-hub" class="social-icon track-click" data-channel="GitHub" id="github-link" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="https://www.linkedin.com/in/sumanta-sutradhar/" class="social-icon track-click" data-channel="LinkedIn" id="linkedin-link" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://x.com/SumantaSutradh7" class="social-icon track-click" data-channel="Twitter" id="twitter-link" target="_blank" title="Twitter/X">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentColor" style="width: 0.95rem; height: 0.95rem; display: block;">
+                                <path d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z"/>
+                            </svg>
+                        </a>
+                        <a href="https://discord.gg/5cczRf2B" class="social-icon track-click" data-channel="Discord" id="discord-link" target="_blank" title="Discord"><i class="fab fa-discord"></i></a>
+                    </div>
+                </div>
+
+                <div class="hero-visual">
+                    <div class="profile-card-wrapper">
+                        <div class="profile-card-glow"></div>
+                        <div class="profile-card">
+                            <div class="profile-img-container">
+                                <img src="/uploads/avatar_new.jpg" alt="Sumanta" id="profile-img" class="profile-img">
+                            </div>
+                            <div class="profile-info">
+                                <h3 class="profile-name" id="profile-name">Sumanta</h3>
+                                <p class="profile-title animated-subtitle" id="profile-bio">Website Developer</p>
+                                <div class="profile-location">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    <span id="profile-loc">West Bengal, India</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- GitHub Profile Sync Module -->
+        <section class="section github-sync-section">
+            <div class="container">
+                <div class="sync-panel glass-card">
+                    <div class="sync-info">
+                        <h3><i class="fab fa-github"></i> GitHub Live Integration</h3>
+                        <p>Sync this portfolio directly with your GitHub profile! Enter your GitHub username below to live-load your repositories, bio, and stats.</p>
+                    </div>
+                    <div class="sync-form">
+                        <div class="input-wrapper">
+                            <i class="fas fa-user-circle input-icon"></i>
+                            <input type="text" id="github-username-input" placeholder="Enter GitHub Username..." aria-label="GitHub Username">
+                        </div>
+                        <button id="btn-sync" class="btn btn-primary btn-sync">
+                            <span class="btn-text">Sync Profile</span>
+                            <i class="fas fa-sync-alt" id="sync-icon"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stats Section -->
+        <section class="section stats-section">
+            <div class="container stats-container">
+                <div class="stat-card glass-card">
+                    <div class="stat-icon-wrapper purple-glow">
+                        <i class="fas fa-code-branch"></i>
+                    </div>
+                    <div class="stat-numbers" id="stat-repos">--</div>
+                    <div class="stat-label">Public Projects</div>
+                </div>
+                <div class="stat-card glass-card">
+                    <div class="stat-icon-wrapper blue-glow">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <div class="stat-numbers" id="stat-stars">--</div>
+                    <div class="stat-label">Total Stars Earned</div>
+                </div>
+                <div class="stat-card glass-card">
+                    <div class="stat-icon-wrapper cyan-glow">
+                        <i class="fab fa-linkedin-in"></i>
+                    </div>
+                    <div class="stat-numbers" id="stat-linkedin">--</div>
+                    <div class="stat-label">LinkedIn Followers</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About & Skills Section -->
+        <section id="about" class="section about-section">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-tagline">My Expertise</span>
+                    <h2 class="section-title">Skills & Abilities</h2>
+                    <div class="section-underline"></div>
+                </div>
+
+                <div class="skills-grid" id="skills-grid">
+                    <!-- Loaded dynamically via JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="section projects-section">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-tagline">My Creations</span>
+                    <h2 class="section-title">Portfolio Projects</h2>
+                    <div class="section-underline"></div>
+                </div>
+
+                <!-- Projects Controls -->
+                <div class="projects-controls glass-card">
+                    <div class="control-search">
+                        <i class="fas fa-search search-icon"></i>
+                        <input type="text" id="project-search" placeholder="Search projects by name..." aria-label="Search Projects">
+                    </div>
+                    <div class="control-filters">
+                        <div class="select-wrapper">
+                            <i class="fas fa-filter select-icon"></i>
+                            <select id="filter-language" aria-label="Filter by Language">
+                                <option value="all">All Languages</option>
+                            </select>
+                        </div>
+                        <div class="select-wrapper">
+                            <i class="fas fa-sort-amount-down select-icon"></i>
+                            <select id="sort-projects" aria-label="Sort Projects">
+                                <option value="updated">Recently Updated</option>
+                                <option value="stars">Most Starred</option>
+                                <option value="forks">Most Forked</option>
+                                <option value="name">Alphabetical</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Skeletons (Loading State) -->
+                <div class="projects-grid-loading" id="projects-loading">
+                    <div class="project-skeleton glass-card">
+                        <div class="skeleton-header"></div>
+                        <div class="skeleton-title"></div>
+                        <div class="skeleton-text"></div>
+                        <div class="skeleton-text short"></div>
+                        <div class="skeleton-footer"></div>
+                    </div>
+                    <div class="project-skeleton glass-card">
+                        <div class="skeleton-header"></div>
+                        <div class="skeleton-title"></div>
+                        <div class="skeleton-text"></div>
+                        <div class="skeleton-text short"></div>
+                        <div class="skeleton-footer"></div>
+                    </div>
+                    <div class="project-skeleton glass-card">
+                        <div class="skeleton-header"></div>
+                        <div class="skeleton-title"></div>
+                        <div class="skeleton-text"></div>
+                        <div class="skeleton-text short"></div>
+                        <div class="skeleton-footer"></div>
+                    </div>
+                </div>
+
+                <!-- Empty State -->
+                <div id="projects-empty" class="projects-empty glass-card hidden">
+                    <i class="fas fa-folder-open empty-icon"></i>
+                    <h3>No Projects Found</h3>
+                    <p>No projects match your search or filter selection. Try adjusting your query or filters.</p>
+                </div>
+
+                <!-- Projects Grid -->
+                <div class="projects-grid" id="projects-grid">
+                    <!-- Cards will be dynamically generated by JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Experience Timeline Section -->
+        <section id="timeline" class="section timeline-section">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-tagline">My Journey</span>
+                    <h2 class="section-title">Experience & Education</h2>
+                    <div class="section-underline"></div>
+                </div>
+
+                <div class="timeline" id="timeline-container">
+                    <!-- Loaded dynamically via JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="section contact-section">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-tagline">Get In Touch</span>
+                    <h2 class="section-title">Contact Me</h2>
+                    <div class="section-underline"></div>
+                </div>
+
+                <div class="contact-grid">
+                    <!-- Contact Cards -->
+                    <div class="contact-info-column">
+                        <a href="#" class="contact-card-link track-click" data-channel="Email" id="email-card-link">
+                            <div class="contact-card glass-card">
+                                <div class="contact-card-icon"><i class="fas fa-envelope"></i></div>
+                                <div class="contact-card-info">
+                                    <h3>Email Me</h3>
+                                    <p id="contact-email">sumantasutradhar52@gmail.com</p>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="#" class="contact-card-link track-click" data-channel="Phone" id="phone-card-link">
+                            <div class="contact-card glass-card">
+                                <div class="contact-card-icon"><i class="fas fa-phone-alt"></i></div>
+                                <div class="contact-card-info">
+                                    <h3>Call Me</h3>
+                                    <p id="contact-phone">03244247203</p>
+                                </div>
+                            </div>
+                        </a>
+                        <div class="contact-card glass-card">
+                            <div class="contact-card-icon"><i class="fas fa-map-marker-alt"></i></div>
+                            <div class="contact-card-info">
+                                <h3>Location</h3>
+                                <p id="contact-location">West Bengal, India</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Interactive Location Map -->
+                        <div class="contact-map glass-card" id="map-iframe-container">
+                            <iframe src="https://maps.google.com/maps?q=Ashurali,%20Joypur,%20Bankura,%20West%20Bengal,%20India&t=&z=14&ie=UTF8&iwloc=&output=embed" width="100%" height="220" style="border:0; border-radius: 8px;" allowfullscreen="" loading="lazy" id="map-iframe"></iframe>
+                        </div>
+                    </div>
+
+                    <!-- Contact Form -->
+                    <div class="contact-form-column">
+                        <form class="contact-form glass-card" id="contact-form">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <input type="text" id="form-name" required placeholder=" ">
+                                    <label for="form-name">Your Name</label>
+                                    <i class="fas fa-user input-icon-form"></i>
+                                </div>
+                                <div class="form-group">
+                                    <input type="email" id="form-email" required placeholder=" ">
+                                    <label for="form-email">Your Email</label>
+                                    <i class="fas fa-envelope input-icon-form"></i>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" id="form-subject" required placeholder=" ">
+                                <label for="form-subject">Subject</label>
+                                <i class="fas fa-tag input-icon-form"></i>
+                            </div>
+                            <div class="form-group">
+                                <textarea id="form-message" required rows="7" placeholder=" "></textarea>
+                                <label for="form-message">Your Message</label>
+                                <i class="fas fa-comment-alt input-icon-form"></i>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-submit">
+                                <span class="btn-text">Send Message</span>
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                            <div class="form-status" id="form-status"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Admin Gate Section -->
+        <section id="admin-gate" class="section admin-gate-section" data-reveal="bottom">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-tagline">Secure Access Gate</span>
+                    <h2 class="section-title">Console Administration</h2>
+                    <div class="section-underline"></div>
+                </div>
+                
+                <div class="gate-grid">
+                    <!-- Left: Graphics column -->
+                    <div class="gate-graphic-column" data-reveal="left">
+                        <div class="gate-graphic-glow"></div>
+                        <img src="/uploads/gate_illustration.jpg" alt="Security Lock" class="gate-illustration-img">
+                    </div>
+                    
+                    <!-- Right: Passcode Card column -->
+                    <div class="gate-card-column" data-reveal="right">
+                        <div class="gate-card-wrapper">
+                            <div class="gate-card-glow"></div>
+                            <div class="gate-card glass-card">
+                                <div class="gate-icon-wrap">
+                                    <i class="fas fa-terminal animate-pulse" style="color: var(--accent-blue);"></i>
+                                </div>
+                                <h3>Unlock Admin Console</h3>
+                                <p class="gate-desc">Enter the secure database passcode below to access the profile manager, timeline editor, custom project uploader, and realtime visitor logs.</p>
+                                
+                                <form id="public-admin-login-form" class="gate-form">
+                                    <div class="form-group">
+                                        <input type="password" id="gate-passcode" required placeholder=" ">
+                                        <label for="gate-passcode">Secure Passcode</label>
+                                        <i class="fas fa-lock input-icon-form"></i>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary gate-btn w-full">
+                                        <span class="btn-text">Establish Connection</span>
+                                        <i class="fas fa-plug"></i>
+                                    </button>
+                                    <div id="gate-login-status" class="gate-status"></div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Centered Branded Footer -->
+    <footer>
+        <div class="container footer-container centered-footer">
+            <a href="#" class="nav-logo">
+                <span class="logo-text">S<span class="text-glow">umanta</span></span>
+            </a>
+            <p class="footer-desc">Building high-quality, professional digital products that make a difference.</p>
+            <div class="footer-links">
+                <a href="#home">Home</a>
+                <a href="#about">About & Skills</a>
+                <a href="#projects">Projects</a>
+                <a href="#timeline">Experience</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <div class="social-links" style="margin-bottom: 20px;">
+                <a href="https://github.com/sumantacollage2004-hub" class="social-icon footer-git track-click" data-channel="GitHub" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/sumanta-sutradhar/" class="social-icon footer-li track-click" data-channel="LinkedIn" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://x.com/SumantaSutradh7" class="social-icon footer-tw track-click" data-channel="Twitter" target="_blank" title="Twitter/X">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentColor" style="width: 0.95rem; height: 0.95rem; display: block;">
+                        <path d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z"/>
+                    </svg>
+                </a>
+                <a href="https://discord.gg/5cczRf2B" class="social-icon footer-disc track-click" data-channel="Discord" target="_blank" title="Discord"><i class="fab fa-discord"></i></a>
+            </div>
+            <p class="copyright">&copy; 2026 Sumanta. All Rights Reserved. Built with <i class="fas fa-heart text-danger"></i> & Node.js.</p>
+            
+            <!-- Administrative Access Gate Link -->
+            <a href="/admin" class="footer-admin-link" style="opacity: 0.25; font-size: 0.8rem; margin-top: 15px; text-decoration: none; color: var(--text-secondary); transition: opacity 0.3s;" onmouseover="this.style.opacity=0.6" onmouseout="this.style.opacity=0.25">
+                <i class="fas fa-cog"></i> Portal Administration
+            </a>
+        </div>
+    </footer>
+
+    <!-- External Script -->
+    <script src="cursor-effect.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

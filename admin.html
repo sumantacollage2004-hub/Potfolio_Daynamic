@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sumanta Sutradhar | Administrator Console</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Dedicated Admin CSS -->
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body class="admin-page-body">
+    <!-- Toast Notifications Container -->
+    <div id="toast-container" class="toast-container"></div>
+
+    <!-- Background Decoration -->
+    <div class="bg-decorations">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="grid-overlay"></div>
+    </div>
+
+    <!-- Admin Wrapper -->
+    <div class="admin-layout-container">
+        
+        <!-- 1. Passcode Authentication Card (Shown when not authenticated) -->
+        <div class="admin-auth-screen" id="admin-auth-screen">
+            <div class="auth-card glass-card">
+                <div class="auth-card-header">
+                    <div class="auth-card-icon"><i class="fas fa-shield-alt animate-pulse"></i></div>
+                    <h2>Admin Authentication</h2>
+                    <p>Enter passcode to unlock portfolio management console.</p>
+                </div>
+                <form id="admin-login-form">
+                    <div class="form-group">
+                        <input type="password" id="admin-login-passcode" required placeholder=" ">
+                        <label for="admin-login-passcode">Enter Passcode</label>
+                        <i class="fas fa-key input-icon-form"></i>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-full">
+                        <span class="btn-text">Unlock Console</span>
+                        <i class="fas fa-unlock"></i>
+                    </button>
+                </form>
+                <div class="auth-card-footer">
+                    <a href="index.html" class="back-to-site-link"><i class="fas fa-arrow-left"></i> Return to Portfolio</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2. Admin Panel Console (Shown when authenticated) -->
+        <div class="admin-panel-console hidden" id="admin-panel-console">
+            <!-- Sidebar -->
+            <aside class="console-sidebar glass-card">
+                <div class="sidebar-header">
+                    <h3>Sumanta | Admin</h3>
+                    <p class="status-indicator"><span class="pulse-dot"></span> Console Unlocked</p>
+                </div>
+                <nav class="sidebar-nav">
+                    <button class="nav-tab-btn active" data-target="tab-metrics"><i class="fas fa-chart-line"></i> Realtime Stats</button>
+                    <button class="nav-tab-btn" data-target="tab-profile"><i class="fas fa-user-edit"></i> Profile Settings</button>
+                    <button class="nav-tab-btn" data-target="tab-projects"><i class="fas fa-project-diagram"></i> Upload Projects</button>
+                    <button class="nav-tab-btn" data-target="tab-skills"><i class="fas fa-tools"></i> Skills DB</button>
+                    <button class="nav-tab-btn" data-target="tab-timeline"><i class="fas fa-history"></i> Experience Logs</button>
+                    <button class="nav-tab-btn" data-target="tab-contacts"><i class="fas fa-envelope-open-text"></i> Inbox Messages</button>
+                </nav>
+                <div class="sidebar-footer">
+                    <button class="btn btn-danger w-full" id="btn-console-logout">
+                        <span class="btn-text">Exit Console</span>
+                        <i class="fas fa-sign-out-alt"></i>
+                    </button>
+                </div>
+            </aside>
+
+            <!-- Main Panel -->
+            <main class="console-main">
+                
+                <!-- Tab: Metrics & Realtime Stats -->
+                <section class="tab-pane active" id="tab-metrics">
+                    <div class="section-title-wrap">
+                        <h2>Realtime Visitor Metrics</h2>
+                        <p>Track your audience engagement, traffic, searches, and social media reach dynamically.</p>
+                    </div>
+
+                    <!-- Metrics Grid -->
+                    <div class="metrics-summary-grid">
+                        <div class="metric-card glass-card">
+                            <div class="metric-data">
+                                <h3 id="metric-visits">0</h3>
+                                <p>Total Traffic Visits</p>
+                            </div>
+                            <div class="metric-card-icon purple-glow"><i class="fas fa-eye"></i></div>
+                        </div>
+                        <div class="metric-card glass-card">
+                            <div class="metric-data">
+                                <h3 id="metric-reach">0</h3>
+                                <p>Total Audience Reach</p>
+                            </div>
+                            <div class="metric-card-icon blue-glow"><i class="fas fa-bullhorn"></i></div>
+                        </div>
+                    </div>
+
+                    <!-- Analytics Detail Layout -->
+                    <div class="analytics-detail-layout">
+                        <!-- Search Queries Table -->
+                        <div class="analytics-card glass-card">
+                            <h3><i class="fas fa-search"></i> Visitor Search Queries</h3>
+                            <p class="card-subtitle">Realtime terms typed by visitors to filter projects.</p>
+                            <div class="table-container">
+                                <table class="metrics-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Query Term</th>
+                                            <th>Search Count</th>
+                                            <th>Last Typed</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="metrics-search-queries">
+                                        <tr>
+                                            <td colspan="3" class="text-center">No search query data logged yet.</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- Clicks & Reach Details -->
+                        <div class="analytics-card glass-card">
+                            <h3><i class="fas fa-mouse-pointer"></i> Connection Clicks</h3>
+                            <p class="card-subtitle">Number of times visitors clicked your social cards.</p>
+                            <div class="table-container">
+                                <table class="metrics-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Connection Channel</th>
+                                            <th>Clicks / Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="metrics-clicks">
+                                        <tr>
+                                            <td colspan="2" class="text-center">No click interactions recorded.</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Tab: Profile Settings -->
+                <section class="tab-pane" id="tab-profile">
+                    <div class="section-title-wrap">
+                        <h2>Personal & Contact Settings</h2>
+                        <p>Change your public bio details, location search coordinates, and slide cover headers.</p>
+                    </div>
+
+                    <form id="console-profile-form" class="glass-card panel-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <input type="text" id="admin-prof-name" required placeholder=" ">
+                                <label for="admin-prof-name">Full Display Name</label>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" id="admin-prof-bio" required placeholder=" ">
+                                <label for="admin-prof-bio">Short Professional Bio</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <textarea id="admin-prof-detailed-bio" required rows="4" placeholder=" "></textarea>
+                            <label for="admin-prof-detailed-bio">Detailed Description (Hero section)</label>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <input type="text" id="admin-prof-location" required placeholder=" ">
+                                <label for="admin-prof-location">Location Address</label>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" id="admin-prof-map" required placeholder=" ">
+                                <label for="admin-prof-map">Map Query Coordinates (City, Joypur, Bengal...)</label>
+                            </div>
+                        </div>
+
+                        <div class="form-separator">Connection Links</div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <input type="email" id="admin-prof-email" required placeholder=" ">
+                                <label for="admin-prof-email">Contact Email</label>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" id="admin-prof-phone" required placeholder=" ">
+                                <label for="admin-prof-phone">Contact Phone</label>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <input type="text" id="admin-prof-github" placeholder=" ">
+                                <label for="admin-prof-github">GitHub Username</label>
+                            </div>
+                            <div class="form-group">
+                                <input type="url" id="admin-prof-linkedin" placeholder=" ">
+                                <label for="admin-prof-linkedin">LinkedIn URL</label>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <input type="number" id="admin-prof-followers" placeholder=" ">
+                                <label for="admin-prof-followers">LinkedIn Followers Count</label>
+                            </div>
+                            <div class="form-group">
+                                <input type="number" id="admin-prof-stars" placeholder=" ">
+                                <label for="admin-prof-stars">GitHub Stars Override</label>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <input type="url" id="admin-prof-twitter" placeholder=" ">
+                                <label for="admin-prof-twitter">Twitter / X URL</label>
+                            </div>
+                            <div class="form-group">
+                                <input type="url" id="admin-prof-discord" placeholder=" ">
+                                <label for="admin-prof-discord">Discord Invite URL</label>
+                            </div>
+                        </div>
+
+                        <div class="form-separator">Security settings</div>
+                        <div class="form-group">
+                            <input type="password" id="admin-prof-password" placeholder=" ">
+                            <label for="admin-prof-password">Change Admin Passcode (leave blank to keep current)</label>
+                        </div>
+
+                        <div class="form-separator">Facebook-style Images (Avatar & Cover Slides)</div>
+                        <div class="form-row-file-wrap">
+                            <div class="form-file-card glass-card">
+                                <h5>Profile Picture</h5>
+                                <div class="file-card-preview">
+                                    <img src="/uploads/avatar_new.jpg" id="avatar-preview-img" alt="Avatar Preview">
+                                </div>
+                                <input type="file" id="admin-file-avatar" accept="image/*">
+                            </div>
+                            <div class="form-file-card glass-card">
+                                <h5>Header Logo (SG)</h5>
+                                <div class="file-card-preview">
+                                    <img src="/uploads/header_logo.png" id="header-logo-preview-img" alt="Header Logo Preview">
+                                </div>
+                                <input type="file" id="admin-file-header-logo" accept="image/*">
+                            </div>
+                            <div class="form-file-card glass-card">
+                                <h5>Slider Backgrounds</h5>
+                                <p class="small-desc">Upload multiple banner images for the hero background slider.</p>
+                                <input type="file" id="admin-file-covers" multiple accept="image/*">
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary" style="margin-top: 20px;">Save Profile Changes</button>
+                    </form>
+                </section>
+
+                <!-- Tab: Upload Projects -->
+                <section class="tab-pane" id="tab-projects">
+                    <div class="section-title-wrap flex justify-between align-center">
+                        <div>
+                            <h2>Custom Projects Creator</h2>
+                            <p>Upload new projects or modify existing ones instantly in your portfolio grid.</p>
+                        </div>
+                        <button class="btn btn-primary btn-sm" id="btn-console-add-project"><i class="fas fa-plus"></i> Create Project</button>
+                    </div>
+
+                    <!-- Custom Projects Table List -->
+                    <div class="glass-card panel-table-wrap">
+                        <table class="console-table">
+                            <thead>
+                                <tr>
+                                    <th>Image</th>
+                                    <th>Project Title</th>
+                                    <th>Language</th>
+                                    <th>GitHub Link</th>
+                                    <th>Pinned</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="console-projects-tbody">
+                                <tr>
+                                    <td colspan="6" class="text-center">No custom projects in database. Click Create Project to upload.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- Tab: Skills Database -->
+                <section class="tab-pane" id="tab-skills">
+                    <div class="section-title-wrap flex justify-between align-center">
+                        <div>
+                            <h2>Skills Database</h2>
+                            <p>Add skill tags, group them into categories, and control proficiency percentages.</p>
+                        </div>
+                        <button class="btn btn-primary btn-sm" id="btn-console-add-skill"><i class="fas fa-plus"></i> Add Skill Row</button>
+                    </div>
+
+                    <form id="console-skills-form" class="glass-card panel-form">
+                        <div class="skills-editor-list" id="console-skills-rows">
+                            <!-- Populated dynamically -->
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="margin-top: 20px;">Save Skills DB</button>
+                    </form>
+                </section>
+
+                <!-- Tab: Timeline Experience -->
+                <section class="tab-pane" id="tab-timeline">
+                    <div class="section-title-wrap flex justify-between align-center">
+                        <div>
+                            <h2>Timeline logs</h2>
+                            <p>Insert or modify your career roles, education milestones, and organizational history.</p>
+                        </div>
+                        <button class="btn btn-primary btn-sm" id="btn-console-add-timeline"><i class="fas fa-plus"></i> Add Timeline Event</button>
+                    </div>
+
+                    <div class="glass-card panel-table-wrap">
+                        <table class="console-table">
+                            <thead>
+                                <tr>
+                                    <th>Event Date</th>
+                                    <th>Log Type</th>
+                                    <th>Title / Role</th>
+                                    <th>Organization</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="console-timeline-tbody">
+                                <tr>
+                                    <td colspan="5" class="text-center">No timeline events logged.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- Tab: Inbox Messages -->
+                <section class="tab-pane" id="tab-contacts">
+                    <div class="section-title-wrap">
+                        <h2>Inbox Messages</h2>
+                        <p>Review contact forms submitted by the public. Read full messages or clear spam.</p>
+                    </div>
+
+                    <div class="glass-card panel-table-wrap">
+                        <table class="console-table">
+                            <thead>
+                                <tr>
+                                    <th>Date Received</th>
+                                    <th>Sender Name</th>
+                                    <th>Email Address</th>
+                                    <th>Subject</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="console-contacts-tbody">
+                                <tr>
+                                    <td colspan="5" class="text-center text-muted">No messages in inbox.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+            </main>
+        </div>
+    </div>
+
+    <!-- Modals for CRUD -->
+    <!-- Project Edit Modal -->
+    <div class="modal-overlay" id="admin-project-modal">
+        <div class="modal-card glass-card">
+            <div class="modal-header">
+                <h3 id="admin-proj-modal-title">Create Project</h3>
+                <button class="modal-close" data-close="admin-project-modal"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+                <form id="admin-project-form">
+                    <input type="hidden" id="admin-proj-id-input">
+                    <div class="form-group">
+                        <input type="text" id="admin-proj-name" required placeholder=" ">
+                        <label for="admin-proj-name">Project Title</label>
+                    </div>
+                    <div class="form-group">
+                        <textarea id="admin-proj-desc" required rows="3" placeholder=" "></textarea>
+                        <label for="admin-proj-desc">Description</label>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="admin-proj-lang" placeholder=" ">
+                        <label for="admin-proj-lang">Language Tag (e.g. PHP, JavaScript, React)</label>
+                    </div>
+                    <div class="form-group">
+                        <input type="url" id="admin-proj-github" placeholder=" ">
+                        <label for="admin-proj-github">GitHub Repository URL</label>
+                    </div>
+                    <div class="form-group">
+                        <input type="url" id="admin-proj-live" placeholder=" ">
+                        <label for="admin-proj-live">Live Demo URL</label>
+                    </div>
+                    <div class="form-group-file">
+                        <label>Card Thumbnail Cover Image</label>
+                        <div class="flex gap-2 align-center">
+                            <input type="file" id="admin-proj-image-file" accept="image/*">
+                            <input type="text" id="admin-proj-image-url" placeholder="Or paste image path" class="flex-grow">
+                        </div>
+                    </div>
+                    <div class="form-checkbox">
+                        <input type="checkbox" id="admin-proj-featured">
+                        <label for="admin-proj-featured">Pin as Featured Card</label>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-full">Save Project Details</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Timeline Edit Modal -->
+    <div class="modal-overlay" id="admin-timeline-modal">
+        <div class="modal-card glass-card">
+            <div class="modal-header">
+                <h3 id="admin-time-modal-title">Create Timeline Event</h3>
+                <button class="modal-close" data-close="admin-timeline-modal"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+                <form id="admin-timeline-form">
+                    <input type="hidden" id="admin-time-id-input">
+                    <div class="form-group">
+                        <select id="admin-time-type">
+                            <option value="experience">Experience Log</option>
+                            <option value="education">Education Log</option>
+                        </select>
+                        <label for="admin-time-type" style="top:-10px; font-size:0.75rem;">Log Classification</label>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="admin-time-title" required placeholder=" ">
+                        <label for="admin-time-title">Title / Role Name</label>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="admin-time-org" required placeholder=" ">
+                        <label for="admin-time-org">Organization / Institutional Name</label>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="admin-time-date" required placeholder=" ">
+                        <label for="admin-time-date">Date Range (e.g. 2026 - Present)</label>
+                    </div>
+                    <div class="form-group">
+                        <textarea id="admin-time-desc" required rows="4" placeholder=" "></textarea>
+                        <label for="admin-time-desc">Role description details</label>
+                    </div>
+                    <div class="form-group-file">
+                        <label>Company/Institution logo</label>
+                        <div class="flex gap-2 align-center">
+                            <input type="file" id="admin-time-logo-file" accept="image/*">
+                            <input type="text" id="admin-time-logo-url" placeholder="Or paste logo URL" class="flex-grow">
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-full">Save Timeline Details</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact message details modal -->
+    <div class="modal-overlay" id="admin-message-modal">
+        <div class="modal-card glass-card">
+            <div class="modal-header">
+                <h3>Inbox Message Details</h3>
+                <button class="modal-close" data-close="admin-message-modal"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body" style="display:flex; flex-direction:column; gap:16px;">
+                <div>
+                    <label style="font-size:0.75rem; color:var(--text-muted); text-transform:uppercase;">From</label>
+                    <p id="msg-detail-sender" style="font-weight:400;"></p>
+                </div>
+                <div>
+                    <label style="font-size:0.75rem; color:var(--text-muted); text-transform:uppercase;">Subject</label>
+                    <p id="msg-detail-subject" style="font-weight:400; color:var(--accent-blue);"></p>
+                </div>
+                <div>
+                    <label style="font-size:0.75rem; color:var(--text-muted); text-transform:uppercase;">Date Received</label>
+                    <p id="msg-detail-date" style="font-size:0.85rem;"></p>
+                </div>
+                <div>
+                    <label style="font-size:0.75rem; color:var(--text-muted); text-transform:uppercase;">Message Body</label>
+                    <div style="background:rgba(0,0,0,0.25); border:1px solid var(--border-color); border-radius:8px; padding:16px; font-size:0.85rem; white-space:pre-wrap; line-height:1.6;" id="msg-detail-body"></div>
+                </div>
+                <button class="btn btn-outline-secondary w-full modal-close" data-close="admin-message-modal">Close Review</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- External Script -->
+    <script src="cursor-effect.js"></script>
+    <script src="admin.js"></script>
+</body>
+</html>
